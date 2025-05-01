@@ -7,6 +7,12 @@ class libro(models.Model):
     descripcion=models.TextField(verbose_name='Descripcion',null=True)
     
     
+    def __str__(self):
+        fila="Titulo: "+ self.titulo +" - "+"Descripcion: "+ self.descripcion
+        return fila
     
+    def delete(self, using=None, keep_parernts=False):
+        self.imagen.storage.delete(self.imagen.name)
+        super().delete()
 
 # Create your models here.
